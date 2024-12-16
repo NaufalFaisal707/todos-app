@@ -1,6 +1,6 @@
 # Simple Todos
 
-Ini adalah aplikasi catatan sederhana berbasis web yang menggunakan metode SSR (Server Side Rendering).
+Ini adalah aplikasi todo sederhana berbasis web yang menggunakan metode SSR (Server Side Rendering).
 
 ### Framework yang di gunakan:
 

@@ -1,14 +1,18 @@
 import { ActionFunctionArgs, redirect } from "@remix-run/node";
-import { createTodo } from "~/utils/todo.function";
+import { db } from "~/db/db.server";
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const { todo } = Object.fromEntries(await request.formData()) as {
     todo: string;
   };
 
-  if (createTodo(todo)) {
-    return redirect("/");
-  }
+  await db.todos.create({
+    data: {
+      todo,
+    },
+  });
+
+  return redirect("/");
 };
 
 export const loader = () => {

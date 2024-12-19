@@ -1,14 +1,18 @@
 import { ActionFunctionArgs, redirect } from "@remix-run/node";
-import { deleteTodoById } from "~/utils/todo.function";
+import { db } from "~/db/db.server";
 
-export const action = ({ params }: ActionFunctionArgs) => {
+export const action = async ({ params }: ActionFunctionArgs) => {
   const { todo_id } = params as {
     todo_id: string;
   };
 
-  if (deleteTodoById(todo_id)) {
-    return redirect("/");
-  }
+  await db.todos.delete({
+    where: {
+      todo_id,
+    },
+  });
+
+  return redirect("/");
 };
 
 export const loader = () => {

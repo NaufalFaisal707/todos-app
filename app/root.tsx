@@ -1,10 +1,12 @@
 import {
+  isRouteErrorResponse,
   Link,
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
+  useRouteError,
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
 
@@ -26,17 +28,30 @@ export const links: LinksFunction = () => [
 ];
 
 export const ErrorBoundary = () => {
+  const error = useRouteError();
+
+  function getErrorMessage() {
+    if (isRouteErrorResponse(error)) {
+      return error.data;
+    } else if (error instanceof Error) {
+      return error.message;
+    } else {
+      return "Unknown Error";
+    }
+  }
+
   return (
     <div className="w-svw h-svh max-w-screen-sm mx-auto flex flex-col relative">
       <div className="select-none opacity-60 grow flex flex-col items-center justify-center gap-4">
         <HeartCrack className="size-12" />
         <h1>Aplikasi Rusak!</h1>
+        <p>{getErrorMessage()}</p>
+        <Link to="/">
+          <Button variant="outline" title="Muat ulang">
+            Muat ulang
+          </Button>
+        </Link>
       </div>
-      <Link to="/">
-        <Button variant="outline" title="Muat ulang">
-          Muat ulang
-        </Button>
-      </Link>
     </div>
   );
 };

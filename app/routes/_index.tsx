@@ -11,15 +11,15 @@ import { Button } from "~/components/ui/button";
 import { Checkbox } from "~/components/ui/checkbox";
 import { Input } from "~/components/ui/input";
 import { ScrollArea } from "~/components/ui/scroll-area";
+import { db } from "~/db/db.server";
 import { Todos } from "~/db/db.todos";
-import { getAllTodos } from "~/utils/todo.function";
 
 export const meta: MetaFunction = () => {
   return [{ title: "Todos App" }];
 };
 
-export const loader = () => {
-  return Response.json(getAllTodos());
+export const loader = async () => {
+  return await db.todos.findMany();
 };
 
 export default function IndexTodos() {

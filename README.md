@@ -1,6 +1,6 @@
 # Simple Todos
 
-Ini adalah aplikasi todo sederhana berbasis web yang menggunakan metode SSR (Server Side Rendering).
+Ini adalah aplikasi todo sederhana berbasis web yang menggunakan metode SSR (Server Side Rendering) + Prisma!
 
 ### Framework yang di gunakan:
 
@@ -9,6 +9,7 @@ Ini adalah aplikasi todo sederhana berbasis web yang menggunakan metode SSR (Ser
 - [Lucide](https://lucide.dev/)
 - [Shadcn/ui](https://ui.shadcn.com/)
 - [TailwindCSS](https://tailwindcss.com/)
+- [Prisma](https://prisma.io/)
 
 ### Langkah instalasi:
 
